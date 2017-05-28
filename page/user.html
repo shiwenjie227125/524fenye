@@ -1,0 +1,78 @@
+<section class="main page" id="sections">
+    <div class="fixed-bar">
+
+        <div class="item-title">
+            <span id="tile">用户管理</span>
+        </div>
+    </div>
+    <div class="fixed-empty"></div>
+
+    <div class="tb-type1 noborder search">
+        <span>状态</span>
+        <select name="" id="statues" ng-model="statues">
+            <option value="">全部</option>
+            <option value="启用">启用</option>
+            <option value="禁用">禁用</option>
+        </select>
+        <span>角色</span>
+        <select name="" id="roles" ng-model="roleName">
+            <option value="">全部</option>
+            <option value="管理员">管理员</option>
+            <option value="13管理">13管理</option>
+            <option value="13管理员aaa">13管理员aaa</option>
+        </select>
+        <span>名称</span>
+        <input type="text" ng-model="names"/>
+        <button ng-click="searchFn()">查询</button>
+    </div>
+    <table class="table tb-type2">
+        <thead>
+        <tr class="space">
+            <th colspan="15" class="nobg">列表</th>
+        </tr>
+        <tr class="thead">
+            <th>ID</th>
+            <th>登录名</th>
+            <th>名称</th>
+            <th>角色</th>
+            <th>电话</th>
+            <th>邮箱</th>
+            <th>状态</th>
+            <th>创建时间</th>
+            <th class="w300 align-center">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in cutoutData">
+            <td ng-bind="item.ID"></td>
+            <td ng-bind="item.loginname"></td>
+            <td ng-bind="item.name"></td>
+            <td ng-bind="item.role"></td>
+            <td ng-bind="item.telephone"></td>
+            <td ng-bind="item.email"></td>
+            <td ng-bind="item.state"></td>
+            <td ng-bind="item.creattime"></td>
+            <td class="w300 align-center">
+                <a class="edit" href="" ng-click="amendFn(item)">修改</a> |
+                <a class="edit" href="" ng-click="deleteFn(item)">删除</a>
+                <a class="edit" href="" ng-click="">赋权</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="hid" ng-show="cutPageState">
+        <p class="fl">总共有条<em ></em>数据</p>
+        <div class="fl marl50">
+            <span  class="anniu1" ng-click="updownFn('-')">上一页</span>
+            <span class="annius" ng-class="{back:(index+1)==1}" ng-click="changeIndexFn(1)">1</span>
+            <span class="annius" ng-show="showStatue1">...</span>
+            <span ng-repeat="i in pageArr" ng-show="showArr.indexOf(i)!=-1" class="annius" ng-class="{back:(index+1)==i}" ng-click="changeIndexFn(i)">{{i}}</span>
+            <span  class="annius" ng-show="showStatue2">...</span>
+            <span class="annius" ng-show="lastPage" ng-class="{back:(index+1)==allPage}" ng-click="changeIndexFn(allPage)">{{allPage}}</span>
+            <span  class="anniu1" ng-click="updownFn('+')">下一页</span>
+            第<input type="number" min="1" max="{{allPage}}" ng-change="changeInput()" ng-model="valueDATA" style="width:50px;"/>页
+        </div>
+    </div>
+</section>
+<confirm></confirm>
+<change></change>
